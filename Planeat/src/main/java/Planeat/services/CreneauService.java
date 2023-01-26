@@ -3,7 +3,6 @@ package Planeat.services;
 import Planeat.entity.Creneau;
 import Planeat.repositories.CreneauRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.NoResultException;

@@ -15,7 +15,8 @@ public class Ingredient {
     private String provenance;
     @ManyToMany(mappedBy = "listeIngredient")
     private Set<Recette> listeRecette;
-
+    @OneToMany(mappedBy = "idRI.recetteIngredient")
+    Set<RecetteIngredient> listerecetteIngredient;
     public void setIdIngredient(Long idIngredient) {
         this.idIngredient = idIngredient;
     }

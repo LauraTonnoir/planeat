@@ -1,5 +1,7 @@
 package Planeat.entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 
 import java.util.Set;
@@ -25,9 +27,13 @@ public class Recette {
     private Set<Creneau> listeCreneaux;
 
 
+    @OneToMany(mappedBy = "idRI.recetteIngredient")
+    Set<RecetteIngredient> listerecetteIngredient;
     @ManyToMany
     @JoinTable
     private Set<Tag> listeTags;
+
+    private Boolean quantiteAdaptable;
     public Set<Ingredient> getListeIngredient() {
         return listeIngredient;
     }
