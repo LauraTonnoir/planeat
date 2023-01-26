@@ -1,6 +1,7 @@
 package Planeat.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -20,7 +21,7 @@ public class Jour {
     @ManyToOne
     @JoinColumn
     private Semaine semaine;
-
+    @Enumerated(EnumType.STRING)
     JourDeLaSemaine jourDeLaSemaine;
 
     public Jour(Long idJour) {
@@ -49,5 +50,18 @@ public class Jour {
 
     public void setJourDeLaSemaine(JourDeLaSemaine jourDeLaSemaine) {
         this.jourDeLaSemaine = jourDeLaSemaine;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Jour jour = (Jour) o;
+        return Objects.equals(idJour, jour.idJour);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idJour);
     }
 }

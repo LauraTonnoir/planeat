@@ -1,9 +1,9 @@
 package Planeat.entity;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
 import javax.persistence.*;
 
+import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Set;
 @Entity
 @Table(name = "recette")
@@ -13,10 +13,10 @@ public class Recette {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seqRecette")
     private Long idRecette;
-    @ManyToMany
-    @JoinTable
-    private Set<Ingredient> listeIngredient;
 
+    private String nomRecette;
+
+    @Enumerated(EnumType.STRING)
     private TypeRecette typerecette;
     @OneToOne
     @JoinColumn
@@ -28,19 +28,14 @@ public class Recette {
 
 
     @OneToMany(mappedBy = "idRI.recetteIngredient")
-    Set<RecetteIngredient> listerecetteIngredient;
+    private Set<RecetteIngredient> listerecetteIngredient;
     @ManyToMany
     @JoinTable
     private Set<Tag> listeTags;
 
     private Boolean quantiteAdaptable;
-    public Set<Ingredient> getListeIngredient() {
-        return listeIngredient;
-    }
 
-    public void setListeIngredient(Set<Ingredient> listeIngredient) {
-        this.listeIngredient = listeIngredient;
-    }
+
 
     public FicheRecette getFicheRecette() {
         return ficheRecette;
@@ -48,6 +43,7 @@ public class Recette {
 
     public void setFicheRecette(FicheRecette ficheRecette) {
         this.ficheRecette = ficheRecette;
+
     }
 
     public TypeRecette getTyperecette() {
@@ -76,5 +72,59 @@ public class Recette {
 
     public void setListeCreneaux(Set<Creneau> listeCreneaux) {
         this.listeCreneaux = listeCreneaux;
+    }
+
+    public Recette(String nomRecette) {
+        this.nomRecette = nomRecette;
+        this.quantiteAdaptable=true;
+    }
+
+    public String getNomRecette() {
+        return nomRecette;
+    }
+
+    public void setNomRecette(String nomRecette) {
+        this.nomRecette = nomRecette;
+    }
+
+    public Set<RecetteIngredient> getListerecetteIngredient() {
+        return listerecetteIngredient;
+    }
+
+    public void setListerecetteIngredient() {
+        this.listerecetteIngredient = listerecetteIngredient;
+    }
+
+    public Set<Tag> getListeTags() {
+        return listeTags;
+    }
+
+    public void setListeTags(Set<Tag> listeTags) {
+        this.listeTags = listeTags;
+    }
+
+    public Boolean getQuantiteAdaptable() {
+        return quantiteAdaptable;
+    }
+
+    public void setQuantiteAdaptable(Boolean quantiteAdaptable) {
+        this.quantiteAdaptable = quantiteAdaptable;
+    }
+
+    public void setListerecetteIngredient(Set<RecetteIngredient> listerecetteIngredient) {
+        this.listerecetteIngredient = listerecetteIngredient;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Recette recette = (Recette) o;
+        return Objects.equals(idRecette, recette.idRecette);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idRecette);
     }
 }

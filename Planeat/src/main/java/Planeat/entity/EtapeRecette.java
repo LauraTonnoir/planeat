@@ -2,6 +2,7 @@ package Planeat.entity;
 
 import javax.persistence.*;
 
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -45,4 +46,17 @@ public class EtapeRecette {
     }
 
     private String DescriptionEtape;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EtapeRecette that = (EtapeRecette) o;
+        return Objects.equals(idEtape, that.idEtape);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idEtape);
+    }
 }

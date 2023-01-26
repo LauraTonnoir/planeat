@@ -2,6 +2,7 @@ package Planeat.entity;
 
 import javax.persistence.*;
 
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -12,22 +13,16 @@ public class Ingredient {
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seqIngredient")
     private Long idIngredient;
 
+    private String nomIngredient;
+
     private String provenance;
-    @ManyToMany(mappedBy = "listeIngredient")
-    private Set<Recette> listeRecette;
+
     @OneToMany(mappedBy = "idRI.recetteIngredient")
     Set<RecetteIngredient> listerecetteIngredient;
     public void setIdIngredient(Long idIngredient) {
         this.idIngredient = idIngredient;
     }
 
-    public Set<Recette> getListeRecette() {
-        return listeRecette;
-    }
-
-    public void setListeRecette(Set<Recette> listeRecette) {
-        this.listeRecette = listeRecette;
-    }
 
     public Ingredient(Long idIngredient) {
         this.idIngredient = idIngredient;
@@ -47,5 +42,38 @@ public class Ingredient {
 
     public void setProvenance(String provenance) {
         this.provenance = provenance;
+    }
+
+    public Ingredient(String nomIngredient) {
+        this.nomIngredient = nomIngredient;
+    }
+
+    public String getNomIngredient() {
+        return nomIngredient;
+    }
+
+    public void setNomIngredient(String nomIngredient) {
+        this.nomIngredient = nomIngredient;
+    }
+
+    public Set<RecetteIngredient> getListerecetteIngredient() {
+        return listerecetteIngredient;
+    }
+
+    public void setListerecetteIngredient(Set<RecetteIngredient> listerecetteIngredient) {
+        this.listerecetteIngredient = listerecetteIngredient;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ingredient that = (Ingredient) o;
+        return Objects.equals(idIngredient, that.idIngredient);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idIngredient);
     }
 }

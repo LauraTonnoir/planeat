@@ -2,6 +2,7 @@ package Planeat.entity;
 
 import javax.persistence.*;
 
+import java.util.Objects;
 import java.util.Set;
 @Entity
 @Table(name= "fiche_recette")
@@ -11,7 +12,7 @@ public class FicheRecette {
 @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqFiche")
 @Column(name="id")
     private Long idFiche;
-
+    @Enumerated(EnumType.STRING)
     private DifficulteRecette difficulteRecette;
     @OneToOne(mappedBy = "ficheRecette")
     private Recette recette;
@@ -54,5 +55,18 @@ public class FicheRecette {
 
     public FicheRecette(Long idFiche) {
         this.idFiche = idFiche;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FicheRecette that = (FicheRecette) o;
+        return Objects.equals(idFiche, that.idFiche);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idFiche);
     }
 }

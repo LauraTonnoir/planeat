@@ -1,11 +1,9 @@
 package Planeat.entity;
 
+import java.util.LongSummaryStatistics;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import Planeat.entity.RecetteIngredientKey;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -19,16 +17,22 @@ public class RecetteIngredient {
     private RecetteIngredientKey idRI;
 
     @Column(name = "quantite_ingredient")
-    private int quantiteIngredient;
+    private Long quantiteIngredient;
+    @Enumerated(EnumType.STRING)
+    private UniteIngredient uniteIngredient;
 
 
 
     public RecetteIngredient() {
     }
 
-    public RecetteIngredient(RecetteIngredientKey idRI, int quantiteIngredient) {
+    public RecetteIngredient(RecetteIngredientKey idRI, Long quantiteIngredient) {
         this.idRI = idRI;
         this.quantiteIngredient = quantiteIngredient;
+    }
+
+    public RecetteIngredient(RecetteIngredientKey idRI) {
+        this.idRI = idRI;
     }
 
     public RecetteIngredientKey getIdCB() {
@@ -39,17 +43,28 @@ public class RecetteIngredient {
         this.idRI = idRI;
     }
 
-    public int getQuantiteIngredient() {
+    public Long getQuantiteIngredient() {
         return quantiteIngredient;
     }
 
-    public void setQuantiteIngredient(int quantiteIngredient) {
+    public void setQuantiteIngredient(Long quantiteIngredient) {
         this.quantiteIngredient = quantiteIngredient;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(idRI);
+    public RecetteIngredientKey getIdRI() {
+        return idRI;
+    }
+
+    public void setIdRI(RecetteIngredientKey idRI) {
+        this.idRI = idRI;
+    }
+
+    public UniteIngredient getUniteIngredient() {
+        return uniteIngredient;
+    }
+
+    public void setUniteIngredient(UniteIngredient uniteIngredient) {
+        this.uniteIngredient = uniteIngredient;
     }
 
     @Override
@@ -64,9 +79,8 @@ public class RecetteIngredient {
         return Objects.equals(idRI, other.idRI);
     }
 
-
-
-
-
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(idRI);
+    }
 }

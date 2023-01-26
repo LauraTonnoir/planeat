@@ -2,6 +2,7 @@ package Planeat.entity;
 
 import javax.persistence.*;
 
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -26,5 +27,18 @@ public class Tag {
 
     public Tag(Long idTag) {
         this.idTag = idTag;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tag tag = (Tag) o;
+        return Objects.equals(idTag, tag.idTag);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idTag);
     }
 }

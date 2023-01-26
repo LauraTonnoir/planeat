@@ -2,6 +2,7 @@ package Planeat.entity;
 
 import javax.persistence.*;
 
+import java.util.Objects;
 import java.util.Set;
 @Entity
 @Table(name = "semaine")
@@ -31,5 +32,18 @@ public class Semaine {
 
     public void setListejours(Set<Jour> listejours) {
         this.listejours = listejours;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Semaine semaine = (Semaine) o;
+        return Objects.equals(idSemaine, semaine.idSemaine);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idSemaine);
     }
 }
