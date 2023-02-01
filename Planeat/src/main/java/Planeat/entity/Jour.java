@@ -1,6 +1,7 @@
 package Planeat.entity;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Set;
 
@@ -22,12 +23,28 @@ public class Jour {
     @JoinColumn
     private Semaine semaine;
     @Enumerated(EnumType.STRING)
-    JourDeLaSemaine jourDeLaSemaine;
+    private JourDeLaSemaine jourDeLaSemaine;
+
+    private LocalDate dateDuJour;
 
     public Jour(Long idJour) {
         this.idJour = idJour;
     }
+    public Semaine getSemaine() {
+        return semaine;
+    }
 
+    public void setSemaine(Semaine semaine) {
+        this.semaine = semaine;
+    }
+
+    public LocalDate getDateDuJour() {
+        return dateDuJour;
+    }
+
+    public void setDateDuJour(LocalDate dateDuJour) {
+        this.dateDuJour = dateDuJour;
+    }
     public Long getIdJour() {
         return idJour;
     }
