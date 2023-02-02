@@ -16,6 +16,10 @@ public class Tag {
     private Long idTag;
     @ManyToMany(mappedBy = "listeTags")
     private Set<Recette>listeRecette;
+
+    public Tag() {
+    }
+
     public Long getIdTag() {
         return idTag;
     }

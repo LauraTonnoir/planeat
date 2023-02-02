@@ -19,6 +19,9 @@ public class Jour {
     @OneToMany(mappedBy = "jour")
     private Set<Creneau> creneaux;
 
+    public Jour() {
+    }
+
     @ManyToOne
     @JoinColumn
     private Semaine semaine;

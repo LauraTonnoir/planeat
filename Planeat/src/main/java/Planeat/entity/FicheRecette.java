@@ -16,6 +16,12 @@ public class FicheRecette {
     private DifficulteRecette difficulteRecette;
     @OneToOne(mappedBy = "ficheRecette")
     private Recette recette;
+    @ManyToMany
+    @JoinTable
+    private Set<EtapeRecette> etapesRecette;
+
+    public FicheRecette() {
+    }
 
     public Recette getRecette() {
         return recette;
@@ -25,9 +31,7 @@ public class FicheRecette {
         this.recette = recette;
     }
 
-    @ManyToMany
-    @JoinTable
-    private Set<EtapeRecette> etapesRecette;
+
 
     public Long getIdFiche() {
         return idFiche;

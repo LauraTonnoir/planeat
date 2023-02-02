@@ -1,5 +1,7 @@
 package Planeat.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import java.util.Objects;
@@ -16,17 +18,26 @@ public class Ingredient {
     private String nomIngredient;
 
     private String provenance;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "idRI.recetteIngredient")
     Set<RecetteIngredient> listerecetteIngredient;
+    public Ingredient() {}
+    public Ingredient(Long idIngredient, String nomIngredient, String provenance, Set<RecetteIngredient> listerecetteIngredient) {
+        this.idIngredient = idIngredient;
+        this.nomIngredient = nomIngredient;
+        this.provenance = provenance;
+        this.listerecetteIngredient = listerecetteIngredient;
+    }
+
+    public Ingredient(Long idIngredient) {
+        this.idIngredient = idIngredient;
+    }
+
     public void setIdIngredient(Long idIngredient) {
         this.idIngredient = idIngredient;
     }
 
 
-    public Ingredient(Long idIngredient) {
-        this.idIngredient = idIngredient;
-    }
 
     public Long getIdIngredient() {
         return idIngredient;

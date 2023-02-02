@@ -1,5 +1,7 @@
 package Planeat.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import java.util.ArrayList;
@@ -26,7 +28,7 @@ public class Recette {
     @JoinTable
     private Set<Creneau> listeCreneaux;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "idRI.recetteIngredient")
     private Set<RecetteIngredient> listerecetteIngredient;
     @ManyToMany
@@ -73,7 +75,8 @@ public class Recette {
     public void setListeCreneaux(Set<Creneau> listeCreneaux) {
         this.listeCreneaux = listeCreneaux;
     }
-
+    public Recette() {
+    }
     public Recette(String nomRecette) {
         this.nomRecette = nomRecette;
         this.quantiteAdaptable=true;

@@ -33,6 +33,10 @@ public class Creneau {
         return typeCreneaux;
     }
 
+
+    public Creneau() {
+    }
+
     public void setTypeCreneaux(TypeCreneaux typeCreneaux) {
         this.typeCreneaux = typeCreneaux;
     }

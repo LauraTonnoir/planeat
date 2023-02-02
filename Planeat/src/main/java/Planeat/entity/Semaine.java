@@ -14,6 +14,10 @@ public class Semaine {
     private Long idSemaine;
     @OneToMany(mappedBy = "semaine")
     private Set<Jour> listejours;
+
+    public Semaine() {
+    }
+
     public Semaine(Long idSemaine) {
         this.idSemaine = idSemaine;
     }

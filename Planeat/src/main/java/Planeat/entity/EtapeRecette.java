@@ -17,6 +17,10 @@ public class EtapeRecette {
     @ManyToMany(mappedBy = "etapesRecette")
     private Set<FicheRecette> listeRecette;
 
+
+    public EtapeRecette() {
+    }
+
     public EtapeRecette(Long idEtape) {
         this.idEtape = idEtape;
     }
@@ -28,6 +32,8 @@ public class EtapeRecette {
     public Set<FicheRecette> getListeRecette() {
         return listeRecette;
     }
+
+
 
     public void setListeRecette(Set<FicheRecette> listeRecette) {
         this.listeRecette = listeRecette;
